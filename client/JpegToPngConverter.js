@@ -6,7 +6,7 @@ class JpegToPngConverter {
         const canvas = document.createElement('canvas')
         const context = canvas.getContext('2d')
         const image = new Image()
-        image.src = src
+        image.src = this.src
         image.onload = () => {
             canvas.width = image.width
             canvas.height = image.height
@@ -17,7 +17,7 @@ class JpegToPngConverter {
                 const alpha = data[3],red = data[0],green = data[1],blue = data[2]
                 for(var i = 4;i<data.length;i+=4) {
                     const currRed = data[i],currGreen = data[i+1],currBlue = data[i+2],currAlpha = data[i+3]
-                    if(red == currRed && green == currGreen && blue == currBlue && alpha == currAlpha) {
+                    if((red == currRed && green == currGreen && blue == currBlue && alpha == currAlpha) || ( currRed >= 200 && currGreen >=  200 && currBlue >= 200)) {
                         data[i+3] = 0
                     }
                 }
